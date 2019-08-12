@@ -1,5 +1,6 @@
 package com.qvision.screenplay.abilities;
 
+import com.qvision.screenplay.exceptions.ActorCannotQueryDatabaseException;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.RefersToActor;
@@ -21,6 +22,9 @@ public class QueryDatabase implements Ability, RefersToActor {
     }
 
     public static QueryDatabase as(Actor actor) {
+        if (actor.abilityTo(QueryDatabase.class) == null) {
+            throw new ActorCannotQueryDatabaseException(actor.getName());
+        }
         return actor.abilityTo(QueryDatabase.class).asActor(actor);
 
     }
