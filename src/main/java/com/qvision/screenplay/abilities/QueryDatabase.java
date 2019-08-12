@@ -26,12 +26,22 @@ public class QueryDatabase implements Ability, RefersToActor {
             throw new ActorCannotQueryDatabaseException(actor.getName());
         }
         return actor.abilityTo(QueryDatabase.class).asActor(actor);
-
     }
 
     @Override
     public <T extends Ability> T asActor(Actor actor) {
         this.actor = actor;
         return (T) this;
+    }
+
+    public void createConnection() {
+        /*
+        Aca ira una magia que veremos en otro ejercicio para extraer información de la base de datos.
+         */
+    }
+
+    @Override
+    public String toString() {
+        return "query the database";
     }
 }
